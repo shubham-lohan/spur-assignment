@@ -20,7 +20,7 @@ A full-stack AI customer support widget built with Node.js, TypeScript, React, a
     - `src/lib/prisma.ts`: Database client singleton.
 - **Frontend**: React + Vite + TypeScript.
     - `src/components/Chat.tsx`: Main chat logic and UI.
-    - Uses `axios` for API calls and `tailwindCSS` for styling.
+    - Uses `axios` for API calls and `Bootstrap` for styling.
 - **Database**: SQLite (via Prisma ORM). Easy to setup, no Docker required.
 
 ## Detailed Setup Instructions

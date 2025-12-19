@@ -1,0 +1,189 @@
+{
+  "company": {
+    "name": "Spurnow",
+    "brand_name": "Spur",
+    "legal_name": "Spurtastic Technologies Private Limited",
+    "website": "https://www.spurnow.com/",
+    "headquarters": "Delhi, India",
+    "founded_year": 2021,
+    "company_type": "Privately held",
+    "industry": [
+      "Marketing Automation",
+      "Customer Service Automation",
+      "AI Agents",
+      "Sales Automation"
+    ],
+    "certifications": [
+      "Meta Business Partner",
+      "Shopify Partner",
+      "GDPR Compliant"
+    ],
+    "mission": "To help businesses automate sales, marketing, and support conversations using AI-driven multichannel messaging."
+  },
+  "product": {
+    "name": "Spur",
+    "category": "AI multichannel conversational automation platform",
+    "description": "AI platform that automates sales, support, and marketing across WhatsApp, Instagram, Facebook, and web chat.",
+    "key_channels": [
+      "WhatsApp Business API",
+      "Instagram DMs",
+      "Instagram Comments",
+      "Facebook Messaging",
+      "Live Chat"
+    ]
+  },
+  "core_value_proposition": [
+    "Automate customer interactions at scale",
+    "Eliminate manual support load",
+    "Increase engagement and conversion rates",
+    "Deliver real-time assistance and campaigns",
+    "Allow AI-human hybrid support flows"
+  ],
+  "features": {
+    "ai_agents": {
+      "actionable_ai": true,
+      "crm_actions": true,
+      "query_resolution": true,
+      "internal_data_retrieval": true,
+      "handover_to_humans": true
+    },
+    "messaging_automation": {
+      "whatsapp_api": true,
+      "instagram_automation": true,
+      "facebook_automation": true,
+      "broadcast_campaigns": true,
+      "drip_sequences": true
+    },
+    "conversation_tools": {
+      "shared_inbox": true,
+      "ticketing": true,
+      "live_chat_widget": true,
+      "user_profile_enrichment": true
+    },
+    "integrations": {
+      "shopify": true,
+      "crm": true,
+      "logistics": true,
+      "payment_modules": true
+    },
+    "no_code_platform": true,
+    "analytics_reporting": true
+  },
+  "pricing": {
+    "currency": "USD",
+    "billing": ["monthly", "annual"],
+    "plans": [
+      {
+        "name": "AI Acquire",
+        "automation_flows": 3,
+        "ai_agents": 1,
+        "estimated_price_usd": 12,
+        "best_for": "Small businesses, early automation"
+      },
+      {
+        "name": "AI Start",
+        "automation_flows": 25,
+        "ai_agents": 1,
+        "estimated_price_usd": 31,
+        "best_for": "Ecommerce conversion and retargeting"
+      },
+      {
+        "name": "AI Accelerate",
+        "automation_flows": 50,
+        "ai_agents": 2,
+        "estimated_price_usd": 127,
+        "best_for": "Multi-channel automation scale-out"
+      },
+      {
+        "name": "AI Max",
+        "automation_flows": "unlimited",
+        "ai_agents": 3,
+        "estimated_price_usd": 399,
+        "best_for": "High-scale enterprise automation"
+      }
+    ],
+    "whatsapp_api_costs": "billed separately per message",
+    "contacts_limit": "unlimited",
+    "ai_usage_credits": "plan-dependent"
+  },
+  "use_cases": [
+    {
+      "industry": "Ecommerce",
+      "benefits": [
+        "Abandoned cart recovery",
+        "Product recommendations",
+        "Automated customer support",
+        "Order tracking workflows"
+      ]
+    },
+    {
+      "industry": "Real Estate",
+      "benefits": [
+        "Lead capture",
+        "Visit scheduling",
+        "Inbound qualification"
+      ]
+    },
+    {
+      "industry": "Travel & Hospitality",
+      "benefits": [
+        "Booking automation",
+        "Customer onboarding",
+        "Ticketing communication"
+      ]
+    },
+    {
+      "industry": "Education",
+      "benefits": [
+        "Inquiry handling",
+        "Admission support",
+        "Student communications"
+      ]
+    },
+    {
+      "industry": "Retail",
+      "benefits": [
+        "Offline engagement",
+        "Support and returns",
+        "Loyalty messaging"
+      ]
+    }
+  ],
+  "performance_results": [
+    {
+      "metric": "ROI",
+      "value": "128x",
+      "context": "WhatsApp template campaigns"
+    },
+    {
+      "metric": "Revenue",
+      "value": "₹19.4L",
+      "context": "Instagram comment automation"
+    },
+    {
+      "metric": "Recovery",
+      "value": "₹4.7L",
+      "context": "Abandoned cart workflows"
+    },
+    {
+      "metric": "Delivery Rate",
+      "value": "88%+",
+      "context": "Messaging reliability"
+    }
+  ],
+  "differentiators": [
+    "Unified multichannel automation",
+    "AI that performs actions, not only answers",
+    "No-code automation builder",
+    "Unlimited contacts included",
+    "Deep ecommerce integration",
+    "Human-agent hybrid support"
+  ],
+  "resources": {
+    "help_center": "https://help.spurnow.com/",
+    "youtube": "https://www.youtube.com/@spurnow",
+    "blog": "https://www.spurnow.com/en/blogs",
+    "case_studies": "https://www.spurnow.com/en/case-studies",
+    "onboarding_guides": true
+  }
+}

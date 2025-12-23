@@ -1,5 +1,7 @@
-import { LLMProvider } from './llm.provider';
+import { LLMProvider, LLMProviderType } from './llm.provider';
 import { OpenAIProvider } from './openai.provider';
+import { GeminiProvider } from './gemini.provider';
+import { config } from '../../config';
 
 export class LLMFactory {
     private static instance: LLMProvider;
@@ -9,9 +11,18 @@ export class LLMFactory {
             return this.instance;
         }
 
-        console.log(`Initializing LLM Factory with OpenAI provider`);
+        const providerType = (config.llm.provider as LLMProviderType) || LLMProviderType.OPENAI;
+        console.log(`Initializing LLM Factory with ${providerType} provider`);
 
-        this.instance = new OpenAIProvider();
+        switch (providerType) {
+            case LLMProviderType.GEMINI:
+                this.instance = new GeminiProvider();
+                break;
+            case LLMProviderType.OPENAI:
+            default:
+                this.instance = new OpenAIProvider();
+                break;
+        }
 
         return this.instance;
     }

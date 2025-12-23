@@ -185,5 +185,23 @@
     "blog": "https://www.spurnow.com/en/blogs",
     "case_studies": "https://www.spurnow.com/en/case-studies",
     "onboarding_guides": true
-  }
+},
+"faq": [
+    {
+        "question": "What's your return policy?",
+        "answer": "We offer a 30-day return policy for all unused items in their original packaging. Please contact support to initiate a return."
+    },
+    {
+        "question": "Do you ship to Canada?",
+        "answer": "Yes, we ship internationally, including to Canada. Shipping times and fees may vary based on location."
+    },
+    {
+        "question": "What are your support hours?",
+        "answer": "Our support team is available 24/7 to assist you with any inquiries."
+    },
+    {
+        "question": "Where is my order?",
+        "answer": "You can track your order status by visiting the 'Orders' section in your account dashboard or clicking the tracking link in your confirmation email."
+    }
+]
 }

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
 import { generateReply } from '../services/llm.service';
+import { ensureConversation } from '../services/conversation.service';
 import { Sender } from '@prisma/client';
 import { IChatController } from './interfaces/IChatController';
 
@@ -14,17 +15,7 @@ export class ChatController implements IChatController {
                 throw { status: 400, message: 'Message is required' };
             }
 
-            let conversationId = sessionId;
-            if (!conversationId) {
-                const newConversation = await prisma.conversation.create({});
-                conversationId = newConversation.id;
-            } else {
-                const exists = await prisma.conversation.findUnique({ where: { id: conversationId } });
-                if (!exists) {
-                    const newConversation = await prisma.conversation.create({});
-                    conversationId = newConversation.id;
-                }
-            }
+            const conversationId = await ensureConversation(sessionId);
 
             await prisma.message.create({
                 data: {
@@ -44,7 +35,6 @@ export class ChatController implements IChatController {
             const contextMessages = chronologicalHistory.slice(0, -1);
 
             const replyText = await generateReply(contextMessages, message);
-            console.log(replyText);
             await prisma.message.create({
                 data: {
                     text: replyText,

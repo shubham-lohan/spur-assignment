@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { Send, Store, AlertCircle, PlusCircle, Trash2 } from 'lucide-react';
 import { sendMessage, getHistory } from '../api';
-import type { Message } from '../types';
+import { Sender, type Message } from '../types';
+import { getSessionId, setSessionId, clearSessionId, syncSessionId } from '../utils/session';
 
 const FAQ_CHIPS = [
   "What's your return policy?",
@@ -14,7 +16,7 @@ export const Chat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [sessionId, setSessionId] = useState<string | undefined>(undefined);
+  const [sessionId, setSessionIdState] = useState<string | undefined>(undefined);
   const [error, setError] = useState<string | null>(null);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -32,7 +34,7 @@ export const Chat: React.FC = () => {
   useEffect(() => {
     if (!hasInitialized.current) {
       hasInitialized.current = true;
-      const savedSessionId = localStorage.getItem('chatSessionId');
+      const savedSessionId = getSessionId();
       if (savedSessionId) {
         loadSession(savedSessionId);
       } else {
@@ -42,37 +44,37 @@ export const Chat: React.FC = () => {
   }, []);
 
   const loadSession = (id: string) => {
-      setSessionId(id);
+      setSessionIdState(id);
       setLoading(true);
       getHistory(id)
         .then((response) => {
             const msgs = response.messages;
             const normalizedMsgs = msgs.map((m: any) => ({
                 ...m,
-                sender: m.sender.toLowerCase() === 'user' ? 'user' : 'ai'
+                sender: m.sender.toLowerCase() === Sender.User ? 'user' : 'ai'
             }));
             setMessages(normalizedMsgs);
-            localStorage.setItem('chatSessionId', id);
+            setSessionId(id);
         })
         .catch((err) => {
             console.error("Failed to load history:", err);
-            localStorage.removeItem('chatSessionId');
+            clearSessionId();
             initGreeting();
         })
         .finally(() => setLoading(false));
   };
 
   const initGreeting = () => {
-      setSessionId(undefined);
+      setSessionIdState(undefined);
       setMessages([{
         text: "Hi there! Welcome to Spur Mart. How can I help you today?",
-        sender: 'ai',
+          sender: Sender.AI,
         id: 'init'
     }]);
   };
 
   const handleNewChat = () => {
-    localStorage.removeItem('chatSessionId');
+    clearSessionId();
     initGreeting();
     setError(null);
   };
@@ -84,7 +86,7 @@ export const Chat: React.FC = () => {
   const handleSend = async (text: string = input) => {
     if (!text.trim() || loading) return;
 
-    const userMsg: Message = { text, sender: 'user', id: Date.now().toString() };
+    const userMsg: Message = { text, sender: Sender.User, id: Date.now().toString() };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
     setLoading(true);
@@ -94,13 +96,9 @@ export const Chat: React.FC = () => {
       let currentSessionId = sessionId;
       const response = await sendMessage(text, currentSessionId);
       
-      if (!currentSessionId) {
-        setSessionId(response.sessionId);
-        currentSessionId = response.sessionId;
-        localStorage.setItem('chatSessionId', response.sessionId);
-      }
+      currentSessionId = syncSessionId(response.sessionId, sessionId, setSessionIdState);
 
-      const aiMsg: Message = { text: response.reply, sender: 'ai', id: Date.now().toString() + '_ai' };
+        const aiMsg: Message = { text: response.reply, sender: Sender.AI, id: Date.now().toString() + '_ai' };
       setMessages(prev => [...prev, aiMsg]);
     } catch (err: any) {
         console.error(err);
@@ -166,7 +164,7 @@ export const Chat: React.FC = () => {
                         whiteSpace: 'pre-wrap'
                     }}
                 >
-                  {msg.text}
+                  <ReactMarkdown>{msg.text}</ReactMarkdown>
                 </div>
               </div>
             ))}

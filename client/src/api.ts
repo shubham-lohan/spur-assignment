@@ -1,7 +1,9 @@
 import axios from 'axios';
 import type { Message, ChatResponse } from './types';
 
-const API_URL = 'http://localhost:3001/chat';
+import { config } from './config';
+
+const API_URL = `${config.apiBaseUrl}/chat`;
 
 
 

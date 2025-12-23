@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 import { Message, Sender } from '@prisma/client';
 import { LLMProvider } from './llm.provider';
+import { config } from '../../config';
 
 export class OpenAIProvider implements LLMProvider {
   private openai: OpenAI;
@@ -8,10 +9,10 @@ export class OpenAIProvider implements LLMProvider {
 
   constructor() {
     this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY || 'dummy-key',
+      apiKey: config.llm.openai.apiKey || 'dummy-key',
     });
     
-    this.model = process.env.LLM_MODEL || 'gpt-3.5-turbo';
+    this.model = config.llm.openai.model;
     console.log(`OpenAIProvider initialized with model ${this.model}`);
   }
 

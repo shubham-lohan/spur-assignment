@@ -1,7 +1,7 @@
 export const config = (() => {
     try {
         return {
-            apiBaseUrl: import.meta.env.BACKEND_URL || 'http://localhost:3001',
+            apiBaseUrl: import.meta.env.VITE_BACKEND_URL ,
         };
     } catch (error) {
         console.error('Error loading configuration:', error);
